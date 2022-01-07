@@ -1,0 +1,85 @@
+<%- include("partial/header") %>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("partial/sidebar") %>
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <%- include("partial/top-nav") %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Add Product</h1>
+                            </div>
+                            <% if (message.length > 0) { %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Hey... </strong>
+                                    <%- message %>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <% } %>
+                                    <form action="add-product" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Choose Category</label>
+                                                    <select name="category" class="form-control" id="category">
+                                            <option disabled selected>Select Category</option>
+                                            <% for(let data of displayData){ %>
+                                                <option value="<%= data.id %>"><%= data.categoryName %></option>
+                                            <% } %>
+                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" class="subcategory">
+                                                <div class="form-group">
+                                                    <label>Choose Sub Category</label>
+                                                    <select name="subcategory" id="subcategory" class="form-control">
+                                                <option disabled selected>Select Sub Category</option>
+                                            </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Enter Product Name</label>
+                                                    <input type="text" name="productname" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Enter Product Price</label>
+                                                    <input type="text" name="price" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Select Product Image</label>
+                                                    <input type="file" name="productimage" id="productimage" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+
+                                    </form>
+                        </div>
+                        <!-- End Begin Page Content -->
+                </div>
+                <!-- End of Main Content -->
+
+                <%- include("partial/footer") %>

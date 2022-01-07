@@ -1,0 +1,65 @@
+<%- include("partial/header") %>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("partial/sidebar") %>
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <%- include("partial/top-nav") %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Add Sub Category</h1>
+                            </div>
+                            <% if (message.length > 0) { %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Hey... </strong>
+                                    <%- message %>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <% } %>
+                                    <form action="add-sub-category" method="post">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Select Category</label>
+                                                <div class="form-group">
+                                                    <select name="category" id="category" class="form-control">
+                                                        <option default selected>Choose Category</option>
+                                                        <%  for(cat of categories) {%>
+                                                            <option value="<%- cat._id %>"><%- cat.categoryName%></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Enter Sub Category Name</label>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="subcategory" id="subcategory" placeholder="Sub Category Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                        </div>
+                        <!-- End Begin Page Content -->
+                </div>
+                <!-- End of Main Content -->
+
+                <%- include("partial/footer") %>

@@ -1,0 +1,97 @@
+<%- include("partial/header") %>
+    <%- include("partial/nav") %>
+        <%- include("partial/banner") %>
+            <%- include("partial/feature") %>
+                <section class="checkout_area section_gap">
+                    <div class="container">
+                        <div class="billing_details">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h3>Billing Details</h3>
+                                    <form class="row contact_form" action="/checkout" method="post" novalidate="novalidate">
+                                        <% for(user of user) {%>
+                                            <div class="col-md-12 form-group p_star">
+                                                <input type="text" class="form-control" id="first" name="name" placeholder="Billing Name">
+                                            </div>
+                                            <div class="col-md-12 form-group p_star">
+                                                <input type="text" class="form-control" id="add1" name="address" placeholder="Address">
+                                            </div>
+                                            <div class="col-md-6 form-group p_star">
+                                                <input type="text" class="form-control" id="number" name="contact" value="<%- user.contactNo %>" placeholder="Contact Number" readonly>
+                                            </div>
+                                            <div class="col-md-6 form-group p_star">
+                                                <input type="text" class="form-control" id="email" value="<%- user.email %>" name="email" placeholder="Email ID" readonly>
+
+                                            </div>
+                                            <div class="col-md-12 form-group p_star">
+                                                <select class="country_select" name="country">
+                                                <option selected disabled>Select State</option>
+                                                    <option value="India">India</option>
+                                                    <option value="USA">USA</option>
+                                                    <option value="UK">UK</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 form-group p_star">
+                                                <input type="text" class="form-control" id="city" name="city" placeholder="City">
+                                            </div>
+                                            <div class="col-md-12 form-group p_star">
+                                                <select class="country_select" name="district"> 
+                                                    <option selected disabled>Select District</option>
+                                                    <option value="Paschim Bardhaman">Paschim Bardhaman</option>
+                                                    <option value="Bankura">Bankura</option>
+                                                    <option value="Purulia">Purulia</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 form-group">
+                                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                                            </div>
+                                            <% }%>
+                                                <div class="col-md-12 form-group">
+                                                    <button type="submit" value="submit" class="primary-btn">Proceed To Buy</button>
+                                                </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="order_box">
+                                        <h2>Your Order</h2>
+
+                                        <ul class="list">
+                                            <li><a>Product <span>Total</span></a></li>
+                                            <% for(data of displayData) {
+                                              var add = 0;
+                            for (i = 0; i < count; i++) { 
+                                add += displayData[i].product.price*displayData[i].quantity; 
+                            } %>
+                                                <li>
+                                                    <a>
+                                                        <%- data.product.productName %> <span class="middle">x <%- data.quantity %></span> <span class="last"><%- data.product.price*data.quantity %></span></a>
+                                                </li>
+                                                <% } %>
+                                        </ul>
+
+                                        <ul class="list list_2">
+                                            <li><a>Subtotal <span><%- add %></span></a></li>
+                                            <li><a>Shipping <span><% if(add>500){%>0 <% } else { %>100<% } %></span></a></li>
+
+
+
+
+
+                                            <li><a>Total <span><% if(add>500){%>
+                                                    <%- add %>
+                                                        <% } else { %>
+                                                            <%- add+100 %>
+                                                                <% } %>
+                                                                    </span>
+                                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <%- include("partial/brand") %>
+
+                    <%- include("partial/footer") %>

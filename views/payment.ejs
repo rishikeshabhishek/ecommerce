@@ -1,0 +1,57 @@
+<%- include("partial/header") %>
+    <%- include("partial/nav") %>
+        <%- include("partial/banner") %>
+            <section class="checkout_area section_gap">
+                <div class="container">
+
+                    <div class="cupon_area">
+                        <% if(message.length > 0) {%>
+                            <div class="alert <%- alert %> alert-dismissible fade show" role="alert">
+                                <strong><%- message %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <% } %>
+                                <form action="apply-coupon" method="post">
+                                    <input type="text" name="coupon" placeholder="Enter coupon code" required>
+                                    <button class="tp_btn">Apply Coupon</button>
+                                </form>
+                    </div>
+                    <div class="billing_details">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <img src="img/we-accept.jpg" style="width: 80%; border: 1px solid black" alt="">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <form action="postpayment" method="post">
+                                    <div class="order_box">
+                                        <h2>Your Order Summary</h2>
+                                        <% for(data of displayData) {%>
+                                            <ul class="list list_2">
+                                                <li><a href="#">Subtotal <span><%- data.subTotal %></span></a></li>
+                                                <li><a href="#">Shipping <span><%- data.shipping %></span></a></li>
+                                                <li><a href="#">Discount <span><%-(data.discount*data.total)/100 %></span></a></li>
+                                                <li><a href="#">Total <span><%- data.total - ((data.discount*data.total)/100) %></span></a></li>
+                                            </ul>
+                                            <% } %>
+                                                <div class="payment_item">
+                                                    <input type="radio" id="cash" name="payment" value="Cash">
+                                                    <label for="cash">Cash</label><br>
+                                                    <input type="radio" id="paypal" name="payment" value="Paypal">
+                                                    <label for="paypal">Paypal</label>
+                                                    <img src="img/product/card.jpg" alt="">
+                                                </div>
+                                                <button type="submit" class="primary-btn">Proceed to Purchase</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <%- include("partial/brand") %>
+
+                <%- include("partial/footer") %>

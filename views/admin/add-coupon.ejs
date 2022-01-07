@@ -1,0 +1,56 @@
+<%- include("partial/header") %>
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <%- include("partial/sidebar") %>
+
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <%- include("partial/top-nav") %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Add Coupon</h1>
+                            </div>
+                            <% if (message.length > 0) { %>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Hey... </strong>
+                                    <%- message %>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <% } %>
+                                    <form action="add-coupon" method="post">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <label>Enter Coupon Code</label>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="coupon" placeholder="Coupon Code" required autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Enter Discount Percentage</label>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="coupondiscount" placeholder="Discount Percentage" required autocomplete="off">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+                                        </div>
+                                    </form>
+                        </div>
+                        <!-- End Begin Page Content -->
+                </div>
+                <!-- End of Main Content -->
+
+                <%- include("partial/footer") %>

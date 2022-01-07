@@ -1,0 +1,88 @@
+<%- include("partial/header") %>
+    <%- include("partial/nav") %>
+        <%- include("partial/banner") %>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-5">
+                        <div class="sidebar-categories">
+                            <div class="head">Browse Categories</div>
+
+                            <% for(data in displayData) {%>
+                                <ul class="main-categories">
+                                    <li class="main-nav-list"><a data-toggle="collapse" href="#<%- data %>" aria-expanded="false" aria-controls="<%- data %>"><span
+								 class="lnr lnr-arrow-right"></span><%- data %></a>
+
+                                        <ul class="collapse" id="<%- data %>" data-toggle="collapse" aria-expanded="false" aria-controls="<%- data %>">
+
+                                            <% _.forEach(displayData, function(element) {
+                                                for (let i = 0; i < element.length; i++) {
+                                                    if(element[i].category.categoryName === data){
+               
+                                            %>
+
+                                                <li class="main-nav-list child">
+                                                    <a href="" data-value="<%-  element[i]._id %>" class="subCategory">
+                                                        <%-  element[i].subCategory %>
+                                                    </a>
+                                                </li>
+                                                <% }}}) %>
+                                        </ul>
+
+                                    </li>
+                                </ul>
+                                <% } %>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-7 ">
+                        <% if(message.length > 0) {%>
+                            <div class="alert <%- alert %> alert-dismissible fade show" role="alert">
+                                <strong><%- message %></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                            </div>
+                            <% } %>
+                                <!-- Start Best Seller -->
+                                <section class="lattest-product-area pb-40 category-list ">
+                                    <div class="row allproducts">
+                                        <% for(data of allProducts) {%>
+                                            <div class="col-lg-3 col-md-6 ">
+                                                <div class="single-product ">
+                                                    <a href="view-single-product/<%- data._id %>"><img class="img-fluid productimg " src="uploads/<%- data.image %>" alt=""></a>
+                                                    <div class="product-details">
+                                                        <h6>
+                                                            <%- data.productName %>
+                                                        </h6>
+                                                        <div class="price">
+                                                            <h6>
+                                                                &#8377;
+                                                                <%- data.price %>
+                                                            </h6>
+                                                            <h6 class="l-through">&#8377;
+                                                                <%- data.price+150 %>
+                                                            </h6>
+                                                        </div>
+                                                        <div class="prd-bottom">
+
+                                                            <a href="add-to-bag/<%- data._id %>" class="social-info">
+                                                                <span class="ti-bag"></span>
+                                                                <p class="hover-text">add to bag</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="row filterproducts">
+
+
+                                    </div>
+                                </section>
+                                <!-- End Best Seller -->
+                    </div>
+                </div>
+            </div>
+
+            <%- include("partial/footer") %>
